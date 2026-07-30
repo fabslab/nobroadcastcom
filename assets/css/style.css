@@ -1,0 +1,510 @@
+/* No Broadcast — static site stylesheet */
+
+@font-face {
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/abel-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: swap;
+  src: url('../fonts/source-code-pro.woff2') format('woff2');
+}
+
+:root {
+  --bg: #0d0d0f;
+  --bg-alt: #151517;
+  --panel: rgba(13, 13, 15, 0.72);
+  --text: #f2efe9;
+  --muted: #c4bfb6;
+  --accent: #b98cf0;
+  --max: 72rem;
+  --font-head: 'Abel', sans-serif;
+  --font-body: 'Source Code Pro', monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.site-header.scrolled,
+.site-header:has(.site-nav.open) {
+  background: rgba(13, 13, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.wordmark {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.wordmark:hover,
+.wordmark:focus-visible {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.site-nav ul {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.site-nav a {
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-nav a[aria-current] {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(13, 13, 15, 0.6), rgba(13, 13, 15, 0.8));
+}
+
+.section--plain {
+  min-height: 0;
+  background: var(--bg);
+}
+
+.section--plain::before {
+  content: none;
+}
+
+.section__inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 8rem) 1.5rem;
+}
+
+.section--center .section__inner {
+  text-align: center;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-head);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  letter-spacing: 0.25em;
+  margin: 3rem 0 1rem;
+}
+
+.section p {
+  max-width: 65ch;
+}
+
+.section--center p {
+  margin-inline: auto;
+}
+
+p + p {
+  margin-top: 1.25em;
+}
+
+/* ---------- Hero ---------- */
+
+.hero .tagline {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+}
+
+.hero .btn {
+  margin-top: 2.5rem;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text);
+  border: 1px solid var(--text);
+  background: transparent;
+  padding: 0.9em 2.2em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+}
+
+.btn--solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.btn--solid:hover,
+.btn--solid:focus-visible {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+/* ---------- Release cards ---------- */
+
+.releases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.release {
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(242, 239, 233, 0.12);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.release img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.release h3 {
+  margin: 1.25rem 0 0.25rem;
+}
+
+.release .release__year {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.release__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- Tracks ---------- */
+
+.tracks {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.track__label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+
+.track__duration {
+  color: var(--muted);
+}
+
+.track audio {
+  width: 100%;
+  display: block;
+}
+
+/* ---------- Discography ---------- */
+
+.discography {
+  list-style: none;
+  padding: 0;
+  max-width: 40rem;
+}
+
+.discography li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(242, 239, 233, 0.15);
+}
+
+.discography .year {
+  color: var(--muted);
+}
+
+/* ---------- Panel (bio) ---------- */
+
+.panel {
+  max-width: 56rem;
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(242, 239, 233, 0.12);
+  border-radius: 6px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* ---------- Tour ---------- */
+
+.tour-fallback {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.bit-widget {
+  font-family: var(--font-body) !important;
+  color: var(--text);
+}
+
+.bit-widget a {
+  color: var(--accent);
+}
+
+/* ---------- Media page ---------- */
+
+.video-wrap {
+  aspect-ratio: 16 / 9;
+  max-width: 56rem;
+  background: var(--bg-alt);
+  border: 1px solid rgba(242, 239, 233, 0.12);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.follow-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-head);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background: var(--bg-alt);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.social-links a {
+  color: var(--muted);
+  display: inline-flex;
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--accent);
+}
+
+.social-links svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.booking {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- Reveal motion ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 48rem) {
+  .site-header {
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    display: none;
+    width: 100%;
+  }
+
+  .site-nav.open {
+    display: block;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .site-nav li {
+    padding: 0.6rem 0;
+  }
+
+  .section__inner {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
