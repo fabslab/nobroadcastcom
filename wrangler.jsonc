@@ -2,5 +2,9 @@
 	"name": "nobroadcastcom",
 	"compatibility_date": "2026-07-01",
 	"workers_dev": true,
+	"routes": [
+		{ "pattern": "nobroadcast.com", "custom_domain": true },
+		{ "pattern": "www.nobroadcast.com", "custom_domain": true },
+	],
 	"assets": { "directory": "." },
 }
